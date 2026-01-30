@@ -1,5 +1,6 @@
 import CountdownTimer from "./components/CountdownTimer";
 import RotatingMask from "./components/RotatingMask";
+import SleepingSheep from "./components/SleepingSheep";
 
 export default function Home() {
   return (
@@ -31,6 +32,9 @@ export default function Home() {
         <p className="text-lg sm:text-xl text-[var(--color-hack-text-soft)] max-w-xl mx-auto">
           Hackathon ends February 1, 2026 at 10:00 AM <span className="text-[var(--color-hack-muted)]"></span>.
         </p>
+
+        {/* Sleeping sheep at night (6pm–6am) */}
+        <SleepingSheep />
 
         {/* Countdown to Feb 1, 2026 10:00 AM (your local time) */}
         <CountdownTimer />

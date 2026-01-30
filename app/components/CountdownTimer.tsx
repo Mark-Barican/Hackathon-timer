@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import confetti from "canvas-confetti";
 
 // February 1, 2026 at 10:00 AM in the user's local timezone (system time)
 // Date(year, monthIndex, day, hour, minute) — month 0 = Jan, 1 = Feb
@@ -30,11 +31,45 @@ function pad(n: number) {
   return n.toString().padStart(2, "0");
 }
 
+function fireCongratulationsConfetti() {
+  const duration = 3 * 1000;
+  const end = Date.now() + duration;
+  const colors = ["#0ea5e9", "#38bdf8", "#06b6d4", "#10b981", "#22d3ee"];
+
+  (function frame() {
+    confetti({
+      particleCount: 3,
+      angle: 60,
+      spread: 55,
+      origin: { x: 0 },
+      colors,
+    });
+    confetti({
+      particleCount: 3,
+      angle: 120,
+      spread: 55,
+      origin: { x: 1 },
+      colors,
+    });
+    if (Date.now() < end) requestAnimationFrame(frame);
+  })();
+
+  setTimeout(() => {
+    confetti({
+      particleCount: 80,
+      spread: 100,
+      origin: { y: 0.6 },
+      colors,
+    });
+  }, 200);
+}
+
 export default function CountdownTimer() {
   const [mounted, setMounted] = useState(false);
   const [timeLeft, setTimeLeft] = useState<TimeLeft>(() =>
     getTimeLeft(new Date())
   );
+  const confettiFiredRef = useRef(false);
 
   useEffect(() => {
     setMounted(true);
@@ -43,6 +78,14 @@ export default function CountdownTimer() {
     }, 1000);
     return () => clearInterval(id);
   }, []);
+
+  const isOver = timeLeft.totalMs === 0;
+  useEffect(() => {
+    if (isOver && mounted && !confettiFiredRef.current) {
+      confettiFiredRef.current = true;
+      fireCongratulationsConfetti();
+    }
+  }, [isOver, mounted]);
 
   if (!mounted) {
     return (
@@ -66,17 +109,27 @@ export default function CountdownTimer() {
     );
   }
 
-  const isOver = timeLeft.totalMs === 0;
-
   if (isOver) {
     return (
-      <div className="glass-strong rounded-2xl p-8 sm:p-12 text-center glow-cta border-[var(--color-hack-success)]/30">
-        <p className="text-2xl sm:text-3xl font-bold text-[var(--color-hack-success)] mb-2">
-          Time&apos;s up.
-        </p>
-        <p className="text-[var(--color-hack-text-soft)]">
-          The hackathon has ended. Submissions are closed.
-        </p>
+      <div className="space-y-4">
+        <div className="glass-strong rounded-2xl p-8 sm:p-12 text-center glow-cta border-[var(--color-hack-success)]/30">
+          <p className="text-2xl sm:text-3xl font-bold text-[var(--color-hack-success)] mb-2">
+            Time&apos;s up.
+          </p>
+          <p className="text-[var(--color-hack-text-soft)]">
+            The hackathon has ended. Submissions are closed.
+          </p>
+        </div>
+        {/* Temporary: test confetti button — remove when done testing
+        <div className="flex justify-center">
+          <button
+            type="button"
+            onClick={fireCongratulationsConfetti}
+            className="text-xs px-3 py-1.5 rounded-lg border border-[var(--color-hack-muted)] text-[var(--color-hack-muted)] hover:border-[var(--color-hack-accent)] hover:text-[var(--color-hack-accent)] transition-colors"
+          >
+            🎉 Test confetti
+          </button>
+        </div> */}
       </div>
     );
   }
@@ -89,25 +142,37 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto">
-      {units.map(({ value, label, pad: shouldPad }) => (
-        <div
-          key={label}
-          className="glass-card rounded-2xl p-4 sm:p-6 glow-accent/50 transition-shadow"
-        >
-          <div className="h-14 sm:h-18 flex items-center justify-center">
-            <span
-              className="text-3xl sm:text-5xl font-bold tabular-nums text-[var(--color-hack-accent-bright)] font-[family-name:var(--font-mono)] animate-tick"
-              key={`${label}-${value}`}
-            >
-              {isOver ? "00" : shouldPad ? pad(value) : String(value)}
-            </span>
+    <div className="space-y-4">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto">
+        {units.map(({ value, label, pad: shouldPad }) => (
+          <div
+            key={label}
+            className="glass-card rounded-2xl p-4 sm:p-6 glow-accent/50 transition-shadow"
+          >
+            <div className="h-14 sm:h-18 flex items-center justify-center">
+              <span
+                className="text-3xl sm:text-5xl font-bold tabular-nums text-[var(--color-hack-accent-bright)] font-[family-name:var(--font-mono)] animate-tick"
+                key={`${label}-${value}`}
+              >
+                {shouldPad ? pad(value) : String(value)}
+              </span>
+            </div>
+            <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-[var(--color-hack-muted)] mt-2 text-center">
+              {label}
+            </p>
           </div>
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-[var(--color-hack-muted)] mt-2 text-center">
-            {label}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
+      {/* Temporary: test confetti button — remove when done testing
+      <div className="flex justify-center">
+        <button
+          type="button"
+          onClick={fireCongratulationsConfetti}
+          className="text-xs px-3 py-1.5 rounded-lg border border-[var(--color-hack-muted)] text-[var(--color-hack-muted)] hover:border-[var(--color-hack-accent)] hover:text-[var(--color-hack-accent)] transition-colors"
+        >
+          🎉 Test confetti
+        </button>
+      </div> */}
     </div>
   );
 }
