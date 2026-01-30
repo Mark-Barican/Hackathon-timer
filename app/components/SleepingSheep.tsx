@@ -8,12 +8,9 @@ function isNightTime(): boolean {
   return hour >= 18 || hour < 6;
 }
 
-type PreviewMode = "auto" | "night" | "morning";
-
 export default function SleepingSheep() {
   const [isNight, setIsNight] = useState(true);
   const [mounted, setMounted] = useState(false);
-  const [preview, setPreview] = useState<PreviewMode>("auto");
 
   useEffect(() => {
     setMounted(true);
@@ -23,7 +20,7 @@ export default function SleepingSheep() {
     return () => clearInterval(id);
   }, []);
 
-  const showNight = preview === "auto" ? isNight : preview === "night";
+  const showNight = isNight;
 
   if (!mounted) return null;
 
@@ -55,7 +52,7 @@ export default function SleepingSheep() {
             🐓
           </span>
           <span className="text-fluid-sm uppercase tracking-wider text-[var(--color-hack-muted)]">
-            It's a new day pipol
+            It&apos;s a new day pipol
           </span>
         </>
       )}

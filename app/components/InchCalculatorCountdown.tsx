@@ -1,6 +1,7 @@
 "use client";
 
 import Script from "next/script";
+import Image from "next/image";
 
 export default function InchCalculatorCountdown() {
   return (
@@ -21,12 +22,13 @@ export default function InchCalculatorCountdown() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               id="inch-calculator-icwl"
               src="https://cdn.inchcalculator.com/e/inch-calculator-logo-tiny.png"
               alt="Inch Calculator Logo"
               width={40}
               height={49}
+              unoptimized
             />
             <span id="inch-calculator-icwb">Inch Calculator</span>
           </a>
