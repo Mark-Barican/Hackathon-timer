@@ -117,7 +117,7 @@ export default function CountdownTimer() {
             Time&apos;s up.
           </p>
           <p className="text-[var(--color-hack-text-soft)]">
-            The hackathon has ended. Submissions are closed.
+            The hackathon has ended. Time to present your work!
           </p>
         </div>
         {/* Temporary: test confetti button — remove when done testing
