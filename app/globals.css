@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  /* Dark mode + Mask theme */
+  --color-hack-bg: #0a0c10;
+  --color-hack-surface: #0f1218;
+  --color-hack-card: #141820;
+  --color-hack-border: #1e2430;
+  --color-hack-muted: #64748b;
+  --color-hack-text: #f1f5f9;
+  --color-hack-text-soft: #94a3b8;
+  --color-hack-accent: #0ea5e9;
+  --color-hack-accent-bright: #38bdf8;
+  --color-hack-cta: #06b6d4;
+  --color-hack-cta-glow: #22d3ee;
+  --color-hack-success: #10b981;
+  --font-sans: "Space Grotesk", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--color-hack-bg);
+  color: var(--color-hack-text);
+  font-family: var(--font-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dark mode base */
+html {
+  color-scheme: dark;
+}
+
+/* Modern gradient background (dark) */
+.bg-grid {
+  background:
+    linear-gradient(165deg, #0a0c10 0%, #0f1218 45%, #0a0c10 100%),
+    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+  background-size: 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Glassmorphism — dark mode frosted glass */
+.glass {
+  background: rgba(20, 24, 32, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.glass-strong {
+  background: rgba(20, 24, 32, 0.6);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card {
+  background: rgba(20, 24, 32, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Gradient text for Mask */
+.text-gradient-mask {
+  background: linear-gradient(135deg, #38bdf8 0%, #06b6d4 50%, #0891b2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glow for accent elements */
+.glow-accent {
+  box-shadow: 0 0 40px -10px rgba(14, 165, 233, 0.35);
+}
+
+.glow-cta {
+  box-shadow: 0 0 32px -8px rgba(6, 182, 212, 0.4);
+}
+
+/* Number flip / scale on tick */
+@keyframes tick {
+  0% { transform: scale(1.05); opacity: 0.9; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.animate-tick {
+  animation: tick 0.3s ease-out;
+}
+
+/* 3D mask rotation */
+@keyframes mask-rotate {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+.animate-mask-rotate {
+  animation: mask-rotate 12s linear infinite;
+}
