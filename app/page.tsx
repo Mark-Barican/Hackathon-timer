@@ -4,9 +4,9 @@ import SleepingSheep from "./components/SleepingSheep";
 
 export default function Home() {
   return (
-    <main className="h-screen w-screen overflow-hidden bg-grid flex flex-col items-center justify-center px-main py-main relative">
+    <main className="h-screen w-screen min-w-0 min-h-0 max-w-[100vw] max-h-[100vh] overflow-hidden bg-grid flex flex-col items-center justify-center px-main py-main relative">
       <div className="bg-breathing-wave" aria-hidden />
-      <div className="relative z-10 w-full max-w-fluid mx-auto text-center space-y-fluid-section flex flex-col items-center justify-center overflow-y-auto overflow-x-hidden min-h-0 flex-1 py-main-inner">
+      <div className="relative z-10 w-full max-w-fluid min-w-0 mx-auto text-center space-y-fluid-section flex flex-col items-center justify-center overflow-hidden min-h-0 flex-1 py-main-inner">
         {/* 3D Rotating Mask */}
         <RotatingMask />
 
