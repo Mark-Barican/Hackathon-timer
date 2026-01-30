@@ -16,6 +16,18 @@
   --color-hack-success: #10b981;
   --font-sans: "Space Grotesk", system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  /* Fluid scale: scales with viewport (vmin = min of vw/vh) */
+  --fluid-text-hero: clamp(2rem, 12vmin, 6rem);
+  --fluid-text-display: clamp(1.5rem, 7vmin, 4.5rem);
+  --fluid-text-xl: clamp(1.125rem, 3.5vmin, 1.75rem);
+  --fluid-text-lg: clamp(1rem, 3vmin, 1.5rem);
+  --fluid-text-base: clamp(0.875rem, 2.5vmin, 1.25rem);
+  --fluid-text-sm: clamp(0.75rem, 2vmin, 1rem);
+  --fluid-space-section: clamp(0.5rem, 2.5vmin, 2rem);
+  --fluid-space-block: clamp(0.25rem, 1.2vmin, 1rem);
+  --fluid-gap-grid: clamp(0.5rem, 2vmin, 1.5rem);
+  --fluid-size-mask: clamp(6rem, 22vmin, 16rem);
+  --fluid-size-emoji: clamp(2.5rem, 8vmin, 5rem);
 }
 
 * {
@@ -24,13 +36,18 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
 }
 
 body {
   background: var(--color-hack-bg);
   color: var(--color-hack-text);
   font-family: var(--font-sans);
-  min-height: 100vh;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -39,22 +56,25 @@ html {
   color-scheme: dark;
 }
 
-/* Modern gradient background (dark) */
+/* Modern gradient background (dark) — fixed, no layout shift */
 .bg-grid {
   background:
     linear-gradient(165deg, #0a0c10 0%, #0f1218 45%, #0a0c10 100%),
     linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
   background-size: 100% 100%, 48px 48px, 48px 48px;
+  background-attachment: fixed;
+  background-position: center;
 }
 
-/* Breathing wave overlay — glass texture, subtle contrast */
+/* Breathing wave overlay — glass texture, subtle contrast; contained */
 .bg-breathing-wave {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
   z-index: 0;
+  transform-origin: center center;
   background:
     radial-gradient(
       ellipse 120% 80% at 70% 20%,
@@ -144,4 +164,90 @@ html {
 
 .animate-mask-rotate {
   animation: mask-rotate 12s linear infinite;
+}
+
+/* Fluid responsive typography & spacing — scales with screen size */
+.text-fluid-hero {
+  font-size: var(--fluid-text-hero);
+}
+.text-fluid-display {
+  font-size: var(--fluid-text-display);
+}
+.text-fluid-xl {
+  font-size: var(--fluid-text-xl);
+}
+.text-fluid-lg {
+  font-size: var(--fluid-text-lg);
+}
+.text-fluid-base {
+  font-size: var(--fluid-text-base);
+}
+.text-fluid-sm {
+  font-size: var(--fluid-text-sm);
+}
+.gap-fluid-section {
+  gap: var(--fluid-space-section);
+}
+.space-y-fluid-section > * + * {
+  margin-top: var(--fluid-space-section);
+}
+.space-y-fluid-block > * + * {
+  margin-top: var(--fluid-space-block);
+}
+.p-fluid {
+  padding: var(--fluid-space-block);
+}
+.px-fluid {
+  padding-left: var(--fluid-space-block);
+  padding-right: var(--fluid-space-block);
+}
+.py-fluid {
+  padding-top: var(--fluid-space-block);
+  padding-bottom: var(--fluid-space-block);
+}
+.size-fluid-mask {
+  width: var(--fluid-size-mask);
+  height: var(--fluid-size-mask);
+}
+.text-fluid-emoji {
+  font-size: var(--fluid-size-emoji);
+  line-height: 1;
+}
+.gap-fluid-grid {
+  gap: var(--fluid-gap-grid);
+}
+.p-fluid-card {
+  padding: var(--fluid-space-section);
+}
+.h-fluid-cell {
+  min-height: clamp(4rem, 12vmin, 6rem);
+}
+
+/* Fluid max-width — scales with viewport */
+.max-w-fluid {
+  max-width: min(90vw, 64rem);
+}
+.max-w-fluid-sm {
+  max-width: min(90vw, 56rem);
+}
+.max-w-fluid-xs {
+  max-width: min(90vw, 40rem);
+}
+
+/* Main layout padding — responsive to viewport */
+.px-main {
+  padding-left: clamp(0.5rem, 4vw, 2rem);
+  padding-right: clamp(0.5rem, 4vw, 2rem);
+}
+.py-main {
+  padding-top: clamp(0.5rem, 3vh, 1.5rem);
+  padding-bottom: clamp(0.5rem, 3vh, 1.5rem);
+}
+.px-main-inner {
+  padding-left: clamp(0.5rem, 4vw, 2rem);
+  padding-right: clamp(0.5rem, 4vw, 2rem);
+}
+.py-main-inner {
+  padding-top: clamp(0.5rem, 2vh, 1rem);
+  padding-bottom: clamp(0.5rem, 2vh, 1rem);
 }

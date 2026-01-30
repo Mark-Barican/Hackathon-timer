@@ -89,18 +89,18 @@ export default function CountdownTimer() {
 
   if (!mounted) {
     return (
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-fluid-grid max-w-fluid-sm mx-auto w-full">
         {["Days", "Hours", "Minutes", "Seconds"].map((label) => (
           <div
             key={label}
-            className="glass-card rounded-2xl p-4 sm:p-6"
+            className="glass-card rounded-2xl p-fluid-card"
           >
-            <div className="h-14 sm:h-18 flex items-center justify-center">
-              <span className="text-3xl sm:text-4xl font-bold tabular-nums text-[var(--color-hack-text-soft)]">
+            <div className="h-fluid-cell flex items-center justify-center">
+              <span className="text-fluid-display font-bold tabular-nums text-[var(--color-hack-text-soft)]">
                 --
               </span>
             </div>
-            <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-[var(--color-hack-muted)] mt-2 text-center">
+            <p className="text-fluid-sm font-medium uppercase tracking-wider text-[var(--color-hack-muted)] mt-2 text-center">
               {label}
             </p>
           </div>
@@ -111,12 +111,12 @@ export default function CountdownTimer() {
 
   if (isOver) {
     return (
-      <div className="space-y-4">
-        <div className="glass-strong rounded-2xl p-8 sm:p-12 text-center glow-cta border-[var(--color-hack-success)]/30">
-          <p className="text-2xl sm:text-3xl font-bold text-[var(--color-hack-success)] mb-2">
+      <div className="space-y-fluid-section w-full max-w-fluid-sm mx-auto">
+        <div className="glass-strong rounded-2xl p-fluid-card text-center glow-cta border-[var(--color-hack-success)]/30">
+          <p className="text-fluid-display font-bold text-[var(--color-hack-success)] mb-2">
             Time&apos;s up.
           </p>
-          <p className="text-[var(--color-hack-text-soft)]">
+          <p className="text-fluid-lg text-[var(--color-hack-text-soft)]">
             The hackathon has ended. Time to present your work!
           </p>
         </div>
@@ -142,22 +142,22 @@ export default function CountdownTimer() {
   ];
 
   return (
-    <div className="space-y-4">
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-6 max-w-4xl mx-auto">
+    <div className="space-y-fluid-section w-full">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-fluid-grid max-w-fluid-sm mx-auto w-full">
         {units.map(({ value, label, pad: shouldPad }) => (
           <div
             key={label}
-            className="glass-card rounded-2xl p-4 sm:p-6 glow-accent/50 transition-shadow"
+            className="glass-card rounded-2xl p-fluid-card glow-accent/50 transition-shadow"
           >
-            <div className="h-14 sm:h-18 flex items-center justify-center">
+            <div className="h-fluid-cell flex items-center justify-center">
               <span
-                className="text-3xl sm:text-5xl font-bold tabular-nums text-[var(--color-hack-accent-bright)] font-[family-name:var(--font-mono)] animate-tick"
+                className="text-fluid-display font-bold tabular-nums text-[var(--color-hack-accent-bright)] font-[family-name:var(--font-mono)] animate-tick"
                 key={`${label}-${value}`}
               >
                 {shouldPad ? pad(value) : String(value)}
               </span>
             </div>
-            <p className="text-xs sm:text-sm font-medium uppercase tracking-wider text-[var(--color-hack-muted)] mt-2 text-center">
+            <p className="text-fluid-sm font-medium uppercase tracking-wider text-[var(--color-hack-muted)] mt-2 text-center">
               {label}
             </p>
           </div>

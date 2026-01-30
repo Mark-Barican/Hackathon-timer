@@ -3,7 +3,7 @@
 export default function RotatingMask() {
   return (
     <div
-      className="relative w-32 h-32 sm:w-40 sm:h-40 mx-auto"
+      className="relative size-fluid-mask mx-auto shrink-0"
       style={{ perspective: "1000px" }}
     >
       <div

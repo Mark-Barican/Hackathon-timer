@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
-      <body className="min-h-screen bg-[var(--color-hack-bg)] text-[var(--color-hack-text)] antialiased font-sans">
+      <body className="h-screen w-screen overflow-hidden bg-[var(--color-hack-bg)] text-[var(--color-hack-text)] antialiased font-sans">
         {children}
       </body>
     </html>

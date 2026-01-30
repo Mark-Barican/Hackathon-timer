@@ -4,33 +4,33 @@ import SleepingSheep from "./components/SleepingSheep";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-grid flex flex-col items-center justify-center px-4 py-12 sm:py-20 relative">
+    <main className="h-screen w-screen overflow-hidden bg-grid flex flex-col items-center justify-center px-main py-main relative">
       <div className="bg-breathing-wave" aria-hidden />
-      <div className="relative z-10 w-full max-w-3xl mx-auto text-center space-y-8 sm:space-y-10">
+      <div className="relative z-10 w-full max-w-fluid mx-auto text-center space-y-fluid-section flex flex-col items-center justify-center overflow-y-auto overflow-x-hidden min-h-0 flex-1 py-main-inner">
         {/* 3D Rotating Mask */}
         <RotatingMask />
 
         {/* Theme: Mask */}
-        <div className="space-y-1">
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-[var(--color-hack-muted)]">
+        <div className="space-y-fluid-block">
+          <p className="text-fluid-sm font-medium uppercase tracking-[0.2em] text-[var(--color-hack-muted)]">
             Theme
           </p>
-          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight">
+          <h1 className="text-fluid-hero font-bold tracking-tight">
             <span className="text-gradient-mask">Mask</span>
           </h1>
         </div>
 
         {/* Badge — glassmorphism */}
-        <div className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-[var(--color-hack-text-soft)]">
-          <span className="relative flex h-2 w-2">
+        <div className="glass inline-flex items-center gap-[clamp(0.25rem,1.5vmin,0.75rem)] rounded-full px-fluid py-fluid text-fluid-base font-medium text-[var(--color-hack-text-soft)]">
+          <span className="relative flex h-[clamp(0.375rem,1.5vmin,0.75rem)] w-[clamp(0.375rem,1.5vmin,0.75rem)]">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[var(--color-hack-success)] opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-[var(--color-hack-success)]" />
+            <span className="relative inline-flex h-[clamp(0.375rem,1.5vmin,0.75rem)] w-[clamp(0.375rem,1.5vmin,0.75rem)] rounded-full bg-[var(--color-hack-success)]" />
           </span>
           Countdown to end
         </div>
 
         {/* Subhead: end date (local time) */}
-        <p className="text-lg sm:text-xl text-[var(--color-hack-text-soft)] max-w-xl mx-auto">
+        <p className="text-fluid-lg text-[var(--color-hack-text-soft)] max-w-fluid-xs mx-auto">
           Hackathon ends February 1, 2026 at 10:00 AM <span className="text-[var(--color-hack-muted)]"></span>.
         </p>
 
@@ -41,9 +41,9 @@ export default function Home() {
         <CountdownTimer />
 
         {/* CTA strip — glassmorphism */}
-        <div className="glass-strong rounded-2xl px-6 py-4 shadow-xl">
-          <p className="text-sm text-[var(--color-hack-muted)]">
-            Good luck. God speed.
+        <div className="glass-strong rounded-2xl p-fluid-card shadow-xl">
+          <p className="text-fluid-base text-[var(--color-hack-muted)]">
+            Good luck & God speed.
           </p>
         </div>
       </div>

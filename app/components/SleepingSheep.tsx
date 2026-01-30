@@ -35,27 +35,27 @@ export default function SleepingSheep() {
       {showNight ? (
         <>
           <div className="relative inline-flex items-center justify-center">
-            <span className="text-4xl sm:text-5xl select-none" role="img" aria-label="Sleeping sheep">
+            <span className="text-fluid-emoji select-none inline-block" role="img" aria-label="Sleeping sheep">
               🐑
             </span>
             <span
-              className="absolute -top-2 -right-4 text-lg sm:text-xl opacity-80 animate-pulse"
+              className="absolute -top-1 -right-[clamp(0.5rem,3vmin,1.5rem)] text-fluid-lg opacity-80 animate-pulse"
               style={{ animationDuration: "2s" }}
             >
               zzz
             </span>
           </div>
-          <span className="text-xs uppercase tracking-wider text-[var(--color-hack-muted)]">
-            Night mode
+          <span className="text-fluid-sm uppercase tracking-wider text-[var(--color-hack-muted)]">
+            Gabi na :v
           </span>
         </>
       ) : (
         <>
-          <span className="text-4xl sm:text-5xl select-none" role="img" aria-label="Rooster">
+          <span className="text-fluid-emoji select-none inline-block" role="img" aria-label="Rooster">
             🐓
           </span>
-          <span className="text-xs uppercase tracking-wider text-[var(--color-hack-muted)]">
-            Morning
+          <span className="text-fluid-sm uppercase tracking-wider text-[var(--color-hack-muted)]">
+            It's a new day pipol
           </span>
         </>
       )}
